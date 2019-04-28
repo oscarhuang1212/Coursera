@@ -4,23 +4,6 @@
 #               Course2: Applied Plotting, Charting & Data Representation in Python
 #               Week3: Charting Fundamentals
 
-
-
-
-
-
-"""
-
-
-Need to fix:
-    1. dragging 
-    2. onrelease outofbounds
-
-
-"""
-
-
-
 """
 Assignment 3 - Building a Custom Visualization
 

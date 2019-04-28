@@ -1,8 +1,8 @@
-import pandas as pd
-import numpy as np
-from scipy.stats import ttest_ind
-import datetime as dt
-
+# File name:   Asgmt_04_Hypothesis_Testing.py
+# Author:      Oscar Huang
+# Description:  "Applied Data Science with Python" Specialization by University of Michigan on Coursera
+#               Course1: Introduction to Data Science in Python
+#               Week4: Statistical Analysis in Python and Project
 
 """
 Assignment 4 - Hypothesis Testing
@@ -34,6 +34,12 @@ Assignment 4 - Hypothesis Testing
             (use the chained value in 2009 dollars), in quarterly intervals, in the file gdplev.xls. For this assignment, only look at GDP data from 
                 the first quarter of 2000 onward.
 """
+
+import pandas as pd
+import numpy as np
+from scipy.stats import ttest_ind
+import datetime as dt
+
 
 
 # Use this dictionary to map state names to two letter acronyms

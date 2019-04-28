@@ -1,4 +1,8 @@
-#Assignment 3 - More Pandas
+# File name:   Asgmt_03_More_Pandas.py
+# Author:      Oscar Huang
+# Description:  "Applied Data Science with Python" Specialization by University of Michigan on Coursera
+#               Course1: Introduction to Data Science in Python
+#               Week3: Advanced Python Pandas
 
 """
 Question 1
@@ -49,11 +53,11 @@ Question 1
             'Energy Supply per Capita', '% Renewable', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015'].
 
     This function should return a DataFrame with 20 columns and 15 entries.
-"""
+"""    
 
 import numpy as np
 import pandas as pd
-    
+import matplotlib.pyplot as plt
 
 def energy():
     energy =(pd.read_excel('Energy Indicators.xls')
@@ -120,6 +124,12 @@ def answer_two():
        .merge(GDP(), how = 'outer',left_on = 'Country', right_on= 'Country')
        )      
     return len(df_outer) - len(df_inner)
+
+
+
+
+
+
 
 
 #Answer the following questions in the context of only the top 15 countries by Scimagojr Rank (aka the DataFrame returned by `answer_one()`)
@@ -216,7 +226,6 @@ def answer_nine():
     return Top15['Citation per Person'].astype('float64').corr(Top15['Energy Supply per Capita'].astype('float64'))
     
 def plot9():
-    import matplotlib.pyplot as plt
 
     Top15 = answer_one()
     Top15['Population'] = Top15['Energy Supply'] / Top15['Energy Supply per Capita']
@@ -342,7 +351,6 @@ Optional
 """
 
 def plot_optional():
-    import matplotlib.pyplot as plt
     Top15 = answer_one()
     plt.figure(figsize=(16,6)) 
     plt.scatter(x=Top15['Rank'], y=Top15['% Renewable'], 
@@ -356,3 +364,8 @@ def plot_optional():
     print("This is an example of a visualization that can be created to help understand the data. \
         This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' \
         2014 GDP, and the color corresponds to the continent.")
+
+
+plot9()
+
+plot_optional()

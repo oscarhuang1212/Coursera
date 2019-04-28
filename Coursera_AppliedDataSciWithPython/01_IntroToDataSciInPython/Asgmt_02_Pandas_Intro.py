@@ -1,4 +1,10 @@
-#Assignment 2 - Pandas Introduction
+# File name:    Asgmt_02_Pandas_Intro.py
+# Author:       Oscar Huang
+# Description:  "Applied Data Science with Python" Specialization by University of Michigan on Coursera
+#               Course1: Introduction to Data Science in Python
+#               Week2: Basic Data Processing with Pandas 
+
+import pandas as pd
 
 """   
 Part 1
@@ -7,9 +13,6 @@ Part 1
     The columns are organized as # of Summer games, Summer medals, # of Winter games, Winter medals, 
         total # number of games, total # of medals. Use this dataset to answer the questions below.
 """
-
-import pandas as pd
-
 
 df = pd.read_csv('olympics.csv', index_col=0, skiprows=1)
 
@@ -28,7 +31,6 @@ names_ids = df.index.str.split('\s\(') # split the index by '('
 df.index = names_ids.str[0] # the [0] element is the country name (new index) 
 df['ID'] = names_ids.str[1].str[:3] # the [1] element is the abbreviation or ID (take first 3 characters from that)
 df = df.drop('Totals')
-#print(df.head())
 
 
 
@@ -88,6 +90,9 @@ Question 4
 
 def answer_four():
     return df['Gold.2']*3+df['Silver.2']*2+df['Bronze.2']
+
+
+
 
 
 """

@@ -4,6 +4,23 @@
 #               Course2: Applied Plotting, Charting & Data Representation in Python
 #               Week3: Charting Fundamentals
 
+
+
+
+
+
+"""
+
+
+Need to fix:
+    1. dragging 
+    2. onrelease outofbounds
+
+
+"""
+
+
+
 """
 Assignment 3 - Building a Custom Visualization
 
@@ -67,10 +84,7 @@ df = pd.DataFrame([np.random.normal(32000,200000,3650),
                    np.random.normal(43500,140000,3650), 
                    np.random.normal(48000,70000,3650)], 
                   index=[1992,1993,1994,1995])
-
-
-
-
+                  
 df['Mean']=df.apply(np.mean, axis = 1)
 df['Sem']= df.apply(st.sem, axis = 1)
 cmap = mpl.cm.get_cmap('Reds')
@@ -124,39 +138,39 @@ def onclick(event):
     
     ax2.set_xlim(1991,1996)
     ax2.set_ylim(0,ymax)
+    
     plt.show()
     
 def onrelease(event):
-    
-    ax2.axhline(y=event.ydata,color='black',alpha =0.5)#,label = '{}'.format(event.ydata))
-    ax2.axhline(y=mutable_object['key'],color='black',alpha =0.5)#,label = '{}'.format(event.ydata))
-    
-    
-    if mutable_object['key']<event.ydata:
-        ax2.text(1996,mutable_object['key'],'{0:.0f} '.format(mutable_object['key']),verticalalignment='top',color='black',alpha=0.8)
-        ax2.text(1996,event.ydata,'{0:.0f} '.format(event.ydata),verticalalignment='bottom',color='black',alpha=0.8)
-    elif mutable_object['key']>event.ydata:
-        ax2.text(1996,mutable_object['key'],'{0:.0f} '.format(mutable_object['key']),verticalalignment='bottom',color='black',alpha=0.8)
-        ax2.text(1996,event.ydata,'{0:.0f} '.format(event.ydata),verticalalignment='top',color='black',alpha=0.8)
-    else:
-        ax2.text(1996,mutable_object['key'],'{0:.0f} '.format(mutable_object['key']),verticalalignment='center',color='black',alpha=0.8)
-        ax2.text(1996,event.ydata,'{0:.0f} '.format(event.ydata),verticalalignment='center',color='black',alpha=0.8)
+    if event.inaxes == ax2 and mutable_object['key']!= None:
+        ax2.axhline(y=event.ydata,color='black',alpha =0.5)#,label = '{}'.format(event.ydata))
+        ax2.axhline(y=mutable_object['key'],color='black',alpha =0.5)#,label = '{}'.format(event.ydata))
         
-    
-    
-    ax2.fill_between(x,mutable_object['key'],event.ydata, color = 'grey',alpha = 0.5)
-    ax2.set_xlim(1991,1996)
-    ax2.set_ylim(0,ymax)
-    
-    for n in range(0,len(bars)):
-        h = bars[n].get_height()
-        sem = df.Sem.iloc[n]
-        bars[n].set_color(cmap(to_color(mutable_object['key'],event.ydata,h,sem)))
-        bars[n].set_edgecolor('black')
-    plt.show()
 
+        if mutable_object['key']<event.ydata:
+            ax2.text(1996,mutable_object['key'],'{0:.0f} '.format(mutable_object['key']),verticalalignment='top',color='black',alpha=0.8)
+            ax2.text(1996,event.ydata,'{0:.0f} '.format(event.ydata),verticalalignment='bottom',color='black',alpha=0.8)
+        elif mutable_object['key']>event.ydata:
+            ax2.text(1996,mutable_object['key'],'{0:.0f} '.format(mutable_object['key']),verticalalignment='bottom',color='black',alpha=0.8)
+            ax2.text(1996,event.ydata,'{0:.0f} '.format(event.ydata),verticalalignment='top',color='black',alpha=0.8)
+        else:
+            ax2.text(1996,mutable_object['key'],'{0:.0f} '.format(mutable_object['key']),verticalalignment='center',color='black',alpha=0.8)
+            ax2.text(1996,event.ydata,'{0:.0f} '.format(event.ydata),verticalalignment='center',color='black',alpha=0.8)
+            
+        
+        
+        ax2.fill_between(x,mutable_object['key'],event.ydata, color = 'grey',alpha = 0.5)
+        ax2.set_xlim(1991,1996)
+        ax2.set_ylim(0,ymax)
 
+        for n in range(0,len(bars)):
+            h = bars[n].get_height()
+            sem = df.Sem.iloc[n]
+            bars[n].set_color(cmap(to_color(mutable_object['key'],event.ydata,h,sem)))
+            bars[n].set_edgecolor('black')
 
+        click = False
+        plt.show()
 
 fig.canvas.mpl_connect('button_press_event', onclick)
 fig.canvas.mpl_connect('button_release_event', onrelease)

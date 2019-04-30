@@ -170,12 +170,21 @@ Question 12
         or the center nodes)?
     This function should return an integer.
 """
+
+#There is a direct edge from the center node to the node found in answer_eleven()
+#No matter how many nodes you removed you cannot disconnect them as long as these two nodes exist.
+#Depends on the requirement of the question 12, you are not allowed to remove the node from answer_eleven and the center node
+
+#networkx 1.11 (which coursera used) minimun_node_cut(G,'A','B') assumes that there is no direct edge from 'A' to 'B'
+#networkx 2.1up does not assurme that there is no direct edge from 'A' to 'B'
+
+
 def answer_twelve():
-    
+
     center = nx.center(answer_six())[0]
     prevent_node = answer_eleven()[0]
         
-    return len(nx.minimum_node_cut(answer_six(),center,prevent_node))
+    return len(nx.minimum_node_cut(answer_one(),center,prevent_node))
 
 print(answer_twelve())
 

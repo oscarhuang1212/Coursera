@@ -186,10 +186,6 @@ def answer_twelve():
         
     return len(nx.minimum_node_cut(answer_one(),center,prevent_node))
 
-print(answer_twelve())
-
-
-
 """
 Question 13
 
